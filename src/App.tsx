@@ -1545,7 +1545,7 @@ ${p.trim()}
   return (
     <div className={`relative bg-[#EEF7F6] select-none film-grain font-sans ${
       hasEntered 
-        ? 'min-h-screen h-auto lg:h-screen w-full overflow-x-hidden overflow-y-auto' 
+        ? 'min-h-screen h-auto w-full overflow-x-hidden overflow-y-auto' 
         : 'h-screen w-screen overflow-hidden'
     }`}>
       {/* Ambient Aurora Mesh Gradients */}
@@ -1634,7 +1634,7 @@ ${p.trim()}
           - Frosted backdrop: backdrop-blur-xl bg-white/70 border border-stone-200/50
           ───────────────────────────────────────────────────────────── */}
       <div 
-        className={`min-h-screen h-auto w-full overflow-x-hidden overflow-y-auto pb-24 lg:pb-0 lg:overflow-hidden lg:h-full lg:absolute lg:inset-0 z-20 flex flex-col font-sans select-none film-grain text-stone-800 transition-all duration-700 ease-out transform ${
+        className={`min-h-screen h-auto w-full overflow-x-hidden overflow-y-auto pb-12 z-20 flex flex-col font-sans select-none film-grain text-stone-800 transition-all duration-700 ease-out transform ${
           hasEntered 
             ? 'opacity-100 translate-y-0 blur-0 pointer-events-auto' 
             : 'opacity-0 translate-y-6 blur-md pointer-events-none'
@@ -1729,7 +1729,7 @@ ${p.trim()}
         </header>
 
         {/* Main Content Grid Layout */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 w-full max-w-7xl mx-auto px-4 sm:px-6 overflow-x-hidden overflow-y-visible lg:overflow-hidden py-4 sm:py-6">
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 w-full max-w-7xl mx-auto px-4 sm:px-6 overflow-x-hidden overflow-y-visible py-4 sm:py-6">
           {/* Left Document Reader Card */}
           <div className="lg:col-span-7 w-full max-h-[420px] lg:max-h-[720px] flex flex-col rounded-3xl bg-white/80 backdrop-blur-xl border border-cyan-100/70 shadow-sm p-5 sm:p-7 overflow-hidden shrink-0 lg:shrink">
             <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
@@ -1785,7 +1785,7 @@ ${p.trim()}
           </div>
 
           {/* Right Analysis & Intelligence Panel */}
-          <div className="lg:col-span-5 w-full flex flex-col gap-6 overflow-x-hidden overflow-y-visible lg:overflow-y-auto shrink-0 lg:shrink pb-8 lg:pb-0">
+          <div className="lg:col-span-5 w-full flex flex-col gap-4 overflow-x-hidden overflow-y-visible shrink-0 pb-8 lg:pb-0">
           {/* Stepper Pipeline Card */}
           <div className="bg-white/75 backdrop-blur-xl border border-cyan-100/70 rounded-3xl p-4 sm:p-5 shadow-[0_10px_35px_rgba(6,182,212,0.06)]">
             <div className="flex items-center justify-between text-xs mb-2">
@@ -1838,24 +1838,24 @@ ${p.trim()}
           </div>
 
           {/* Deadlines Section */}
-          <div className="bg-white/75 backdrop-blur-xl border border-cyan-100/70 rounded-3xl p-5 shadow-[0_10px_35px_rgba(6,182,212,0.06)]">
-            <h2 className="text-xs font-semibold text-stone-800 mb-3 flex items-center gap-1.5">
+          <div className="bg-white/75 backdrop-blur-xl border border-cyan-100/70 rounded-3xl py-3 px-4 shadow-[0_10px_35px_rgba(6,182,212,0.06)]">
+            <h2 className="text-xs font-semibold text-stone-800 mb-2 flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-teal-600" />
               Detected Deadlines & Deliverables
             </h2>
             {activeDoc.deadlines.length === 0 ? (
-              <div className="text-xs text-stone-600 bg-stone-50/80 border border-teal-900/10 rounded-2xl p-3.5">
+              <div className="text-xs text-stone-600 bg-stone-50/80 border border-teal-900/10 rounded-2xl p-3">
                 <span className="text-teal-700 font-medium">✓ No academic deadlines detected.</span> This document is categorized as <span className="text-stone-800 font-medium">{activeDoc.category}</span>.
               </div>
             ) : (
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {activeDoc.deadlines.map((d, i) => (
-                  <div key={i} className="flex items-center justify-between bg-stone-50/80 border border-teal-900/10 p-3 rounded-2xl text-xs">
+                  <div key={i} className="flex items-center justify-between bg-stone-50/80 border border-teal-900/10 py-2 px-3 rounded-2xl text-xs">
                     <div>
                       <div className="font-medium text-stone-900">{d.item}</div>
                       <div className="text-[11px] text-stone-500 font-mono mt-0.5">{d.date}</div>
                     </div>
-                    <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200/80 whitespace-nowrap shrink-0">
+                    <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200/80 whitespace-nowrap shrink-0">
                       {d.tag}
                     </span>
                   </div>
@@ -1865,9 +1865,9 @@ ${p.trim()}
           </div>
 
           {/* ── Topic-Aware Synthesized Revision Checklist / Interactive Flashcards ── */}
-          <div className="w-full min-h-[380px] h-auto rounded-3xl bg-white/85 backdrop-blur-xl border border-cyan-100/70 shadow-md p-6 flex flex-col justify-between mt-4 overflow-hidden">
+          <div className="w-full min-h-[340px] h-auto rounded-3xl bg-white/85 backdrop-blur-xl border border-cyan-100/70 shadow-md p-5 flex flex-col justify-between mt-2 overflow-hidden">
             {/* Mode Switcher Tabs */}
-            <div className="flex flex-wrap items-center justify-between text-xs mb-3.5 gap-2">
+            <div className="flex flex-wrap items-center justify-between text-xs mb-3 gap-2">
               <div className="flex items-center gap-1 p-1 bg-teal-950/5 border border-teal-900/10 rounded-full shadow-2xs">
                 <button
                   onClick={() => setStudyTab('checklist')}
@@ -1925,14 +1925,14 @@ ${p.trim()}
                   ></div>
                 </div>
 
-                <div className="space-y-2.5 flex-1 flex flex-col justify-start max-h-[380px] overflow-y-auto pr-1 mb-2 custom-scrollbar">
+                <div className="space-y-2 flex-1 flex flex-col justify-start max-h-[260px] overflow-y-auto pr-1 mb-2 custom-scrollbar">
                   {activeDoc.checklist.map((item, i) => {
                     const isChecked = !!completedItems[item.task];
                     return (
                       <div 
                         key={i} 
                         onClick={() => toggleChecklist(item.task)}
-                        className="flex items-start justify-between gap-3 py-3.5 px-4 text-sm sm:text-base rounded-2xl bg-white/60 hover:bg-white/90 border border-teal-900/10 hover:border-teal-400/50 cursor-pointer transition-all group shadow-2xs"
+                        className="flex items-start justify-between gap-3 py-2.5 px-3.5 text-sm sm:text-base rounded-2xl bg-white/60 hover:bg-white/90 border border-teal-900/10 hover:border-teal-400/50 cursor-pointer transition-all group shadow-2xs"
                       >
                         <div className="flex items-start gap-3 flex-1 min-w-0">
                           {isChecked ? (
@@ -1958,7 +1958,7 @@ ${p.trim()}
               <div className="w-full max-w-md mx-auto flex flex-col items-center select-none">
                 {/* Perspective Container */}
                 <div 
-                  className="w-full h-[270px] cursor-pointer"
+                  className="w-full h-[200px] sm:h-[220px] cursor-pointer"
                   style={{ perspective: '1000px' }}
                   onClick={() => setIsCardFlipped(!isCardFlipped)}
                 >
@@ -1972,7 +1972,7 @@ ${p.trim()}
                   >
                     {/* FRONT FACE */}
                     <div 
-                      className="absolute inset-0 w-full h-full rounded-2xl p-4 sm:p-6 flex flex-col justify-between bg-white/90 backdrop-blur-xl border border-teal-200/60 shadow-sm"
+                      className="absolute inset-0 w-full h-full rounded-2xl p-4 sm:p-5 flex flex-col justify-between bg-white/90 backdrop-blur-xl border border-teal-200/60 shadow-sm"
                       style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                     >
                       <div className="flex justify-between items-center text-xs">
@@ -1982,8 +1982,8 @@ ${p.trim()}
                         <span className="text-teal-600/70 font-mono text-[11px]">Study Card</span>
                       </div>
                       
-                      <div className="my-auto py-2 text-center overflow-y-auto max-h-[160px] pr-1 custom-scrollbar">
-                        <p className="font-serif text-base sm:text-lg text-slate-800 leading-snug px-2 sm:px-4">
+                      <div className="my-auto py-1 text-center overflow-y-auto max-h-[110px] pr-1 custom-scrollbar">
+                        <p className="font-serif text-sm sm:text-base text-slate-800 leading-snug px-2 sm:px-3">
                           {currentCard.front}
                         </p>
                       </div>
@@ -1995,7 +1995,7 @@ ${p.trim()}
 
                     {/* BACK FACE */}
                     <div 
-                      className="absolute inset-0 w-full h-full rounded-2xl p-4 sm:p-6 flex flex-col justify-between bg-gradient-to-br from-teal-500/10 via-cyan-500/10 to-teal-500/5 backdrop-blur-xl border border-teal-300 shadow-sm"
+                      className="absolute inset-0 w-full h-full rounded-2xl p-4 sm:p-5 flex flex-col justify-between bg-gradient-to-br from-teal-500/10 via-cyan-500/10 to-teal-500/5 backdrop-blur-xl border border-teal-300 shadow-sm"
                       style={{ 
                         backfaceVisibility: 'hidden', 
                         WebkitBackfaceVisibility: 'hidden',
@@ -2009,8 +2009,8 @@ ${p.trim()}
                         <span className="text-teal-600/70 font-mono text-[11px]">Verified Note</span>
                       </div>
 
-                      <div className="my-auto py-2 text-center overflow-y-auto max-h-[160px] pr-1 custom-scrollbar">
-                        <p className="font-sans text-sm sm:text-base text-slate-700 leading-relaxed px-2 sm:px-4">
+                      <div className="my-auto py-1 text-center overflow-y-auto max-h-[110px] pr-1 custom-scrollbar">
+                        <p className="font-sans text-xs sm:text-sm text-slate-700 leading-relaxed px-2 sm:px-3">
                           {currentCard.back}
                         </p>
                       </div>
@@ -2023,7 +2023,7 @@ ${p.trim()}
                 </div>
 
                 {/* Controls Row (Below the Card, Large Tap Targets) */}
-                <div className="w-full flex items-center justify-between mt-5 pt-1 gap-2.5 sm:gap-3">
+                <div className="w-full flex items-center justify-between mt-3 mb-1 gap-2.5 sm:gap-3">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
