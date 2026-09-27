@@ -1543,7 +1543,11 @@ ${p.trim()}
   // 1. Cinematic / Motion Intro Gate (The Entrance)
   // ─────────────────────────────────────────────────────────────
   return (
-    <div className="relative h-screen w-screen bg-[#EEF7F6] overflow-hidden select-none film-grain font-sans">
+    <div className={`relative bg-[#EEF7F6] select-none film-grain font-sans ${
+      hasEntered 
+        ? 'min-h-screen h-auto lg:h-screen w-full overflow-x-hidden overflow-y-auto' 
+        : 'h-screen w-screen overflow-hidden'
+    }`}>
       {/* Ambient Aurora Mesh Gradients */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#CCFBF1]/70 rounded-full blur-3xl animate-aurora-slow" />
@@ -1562,7 +1566,7 @@ ${p.trim()}
           - Scales down slightly (scale-95) and fades out (opacity-0 blur-sm duration-700 ease-out)
           ───────────────────────────────────────────────────────────── */}
       <div 
-        className={`absolute inset-0 z-10 flex flex-col justify-between items-center p-6 sm:p-10 select-none transition-all duration-700 ease-out transform ${
+        className={`h-screen w-screen overflow-hidden absolute inset-0 z-10 flex flex-col justify-between items-center p-6 select-none transition-all duration-700 ease-out transform ${
           hasEntered 
             ? 'opacity-0 scale-95 blur-sm pointer-events-none' 
             : 'opacity-100 scale-100 blur-0 pointer-events-auto'
@@ -1571,8 +1575,8 @@ ${p.trim()}
         {/* Interactive Butterflies: articulated Blue Morpho butterflies that flutter with cursor & hover/perch around title */}
         <ButterflyLandingCanvas />
 
-        {/* Top Minimal Brand Bar */}
-        <div className="w-full max-w-6xl flex justify-between items-center relative z-10">
+        {/* Top Row Header */}
+        <div className="w-full max-w-5xl flex items-center justify-between z-10 pt-2">
           <div className="flex items-center gap-2.5">
             <span className="h-2 w-2 rounded-full bg-teal-500 animate-pulse" />
             <span className="text-xs font-mono uppercase tracking-widest text-teal-900/80 font-medium">
@@ -1584,50 +1588,43 @@ ${p.trim()}
           </span>
         </div>
 
-        {/* Center Motion Typography & Action Hero */}
-        <div className="relative z-10 flex flex-col items-center text-center max-w-3xl my-auto px-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-900/10 shadow-xs mb-6 text-teal-950 text-xs font-mono tracking-wider uppercase">
+        {/* Center Hero Unit */}
+        <div className="flex-1 flex flex-col items-center justify-center text-center max-w-xl mx-auto z-10 px-4 my-auto">
+          <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-900/10 shadow-xs text-teal-950 text-xs font-mono tracking-wider uppercase">
             <Sparkles className="w-3.5 h-3.5 text-teal-600" />
             Autonomous Document Intelligence • Client-Side Precision
           </div>
 
-          <h1 id="studio-hero-title" className="font-serif italic font-normal text-6xl sm:text-8xl md:text-9xl text-[#082F35] tracking-tight leading-[0.95] mb-5">
+          <h1 id="studio-hero-title" className="text-4xl sm:text-6xl font-serif font-light text-slate-800 mb-3 tracking-tight leading-tight">
             SmartDoc <span className="bg-gradient-to-r from-teal-600 via-cyan-500 to-teal-500 bg-clip-text text-transparent font-serif italic">Studio</span>
           </h1>
 
-          <p className="font-sans text-sm sm:text-base text-[#2D4A4F] max-w-lg mx-auto font-light leading-relaxed mb-9">
+          <p className="font-sans text-sm sm:text-base text-slate-600 max-w-md mx-auto mb-6 leading-relaxed font-light">
             Transform complex academic slide decks, syllabi, and assignment briefs into structured study intelligence in seconds.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex flex-col items-center">
             <button
               onClick={() => setHasEntered(true)}
-              className="group relative px-9 py-4 rounded-full bg-gradient-to-r from-teal-700 to-cyan-700 hover:from-teal-600 hover:to-cyan-600 text-white font-medium text-sm transition-all duration-300 transform hover:-translate-y-1 active:scale-95 shadow-[0_12px_28px_rgba(13,148,136,0.35)] flex items-center gap-2.5 cursor-pointer"
+              className="group relative px-8 py-3.5 rounded-full bg-gradient-to-r from-teal-700 to-cyan-700 hover:from-teal-600 hover:to-cyan-600 text-white font-medium text-sm transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 shadow-lg hover:shadow-cyan-500/20 flex items-center gap-2.5 cursor-pointer"
             >
               <span>Open Studio</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
 
-            <span className="text-[11px] font-mono text-teal-900/50">
+            <span className="text-[11px] font-mono text-teal-900/50 mt-3">
               or press <kbd className="px-2 py-0.5 rounded bg-white/80 border border-teal-200/80 text-teal-900 font-mono text-[10px] shadow-xs">Space</kbd> or <kbd className="px-2 py-0.5 rounded bg-white/80 border border-teal-200/80 text-teal-900 font-mono text-[10px] shadow-xs">Enter</kbd>
             </span>
           </div>
         </div>
 
-        {/* Bottom Feature Badges */}
-        <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-3 gap-6 text-left relative z-10 border-t border-teal-900/10 pt-6">
-          <div className="bg-white/60 backdrop-blur-xs p-3 rounded-xl border border-teal-900/10 shadow-[0_4px_20px_rgba(6,182,212,0.03)]">
-            <div className="text-xs font-semibold text-[#082F35] mb-0.5">In-Browser PDF Parsing</div>
-            <div className="text-[11px] text-teal-900/60 font-light leading-snug">Zero cloud latency, private local memory stream</div>
-          </div>
-          <div className="bg-white/60 backdrop-blur-xs p-3 rounded-xl border border-teal-900/10 shadow-[0_4px_20px_rgba(6,182,212,0.03)]">
-            <div className="text-xs font-semibold text-[#082F35] mb-0.5">Dynamic Checklist Engine</div>
-            <div className="text-[11px] text-teal-900/60 font-light leading-snug">Student-friendly actionable study checkpoints</div>
-          </div>
-          <div className="bg-white/60 backdrop-blur-xs p-3 rounded-xl border border-teal-900/10 shadow-[0_4px_20px_rgba(6,182,212,0.03)]">
-            <div className="text-xs font-semibold text-[#082F35] mb-0.5">Deliverables & Analytics</div>
-            <div className="text-[11px] text-teal-900/60 font-light leading-snug">Real milestone tracking and reading metrics</div>
-          </div>
+        {/* Bottom Feature Badges / Footer */}
+        <div className="w-full max-w-5xl hidden sm:flex items-center justify-between z-10 border-t border-teal-900/10 pt-3 text-[11px] font-mono text-teal-900/50">
+          <span>In-Browser PDF Parsing</span>
+          <span>•</span>
+          <span>Dynamic Checklist Engine</span>
+          <span>•</span>
+          <span>Verified Local Intelligence</span>
         </div>
       </div>
 
@@ -1637,155 +1634,158 @@ ${p.trim()}
           - Frosted backdrop: backdrop-blur-xl bg-white/70 border border-stone-200/50
           ───────────────────────────────────────────────────────────── */}
       <div 
-        className={`absolute inset-0 z-20 flex flex-col overflow-hidden font-sans select-none film-grain text-stone-800 transition-all duration-700 ease-out transform ${
+        className={`min-h-screen h-auto w-full overflow-x-hidden overflow-y-auto pb-24 lg:pb-0 lg:overflow-hidden lg:h-full lg:absolute lg:inset-0 z-20 flex flex-col font-sans select-none film-grain text-stone-800 transition-all duration-700 ease-out transform ${
           hasEntered 
             ? 'opacity-100 translate-y-0 blur-0 pointer-events-auto' 
             : 'opacity-0 translate-y-6 blur-md pointer-events-none'
         }`}
       >
         {/* Floating Acrylic Glass Navigation Header */}
-        <header className="h-16 border-b border-cyan-100/70 bg-white/75 backdrop-blur-xl px-6 flex items-center justify-between shrink-0 shadow-xs z-20">
-          <div className="flex items-center gap-3">
+        <header className="flex flex-wrap items-center justify-between gap-3 p-3 sm:p-4 border-b border-cyan-100/70 bg-white/80 backdrop-blur-xl shrink-0 shadow-xs z-20">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <button 
               onClick={() => setHasEntered(false)}
-              className="flex items-center gap-1.5 text-xs font-mono text-teal-900/70 hover:text-teal-950 bg-teal-500/10 hover:bg-teal-500/20 px-2.5 py-1.5 rounded-full transition-all cursor-pointer border border-teal-900/10"
+              className="flex items-center gap-1.5 text-xs font-mono text-teal-900/70 hover:text-teal-950 bg-teal-500/10 hover:bg-teal-500/20 px-2.5 py-1.5 rounded-full transition-all cursor-pointer border border-teal-900/10 shrink-0"
               title="Return to entrance landing"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Intro</span>
             </button>
 
-          <div className="h-4 w-px bg-teal-900/15 mx-1 hidden sm:block" />
+            <div className="h-4 w-px bg-teal-900/15 mx-0.5 sm:mx-1 hidden sm:block" />
 
-          <div className="flex items-center gap-2">
-            <span className="font-serif italic font-semibold text-lg text-[#082F35]">
-              SmartDoc <span className="bg-gradient-to-r from-teal-600 via-cyan-500 to-teal-500 bg-clip-text text-transparent font-serif italic">Studio</span>
-            </span>
-            <span className="hidden md:inline-block text-[10px] font-mono text-teal-700 bg-teal-500/10 px-2.5 py-0.5 rounded-full border border-teal-500/20 font-medium">
-              Editorial Canvas
-            </span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="font-serif italic font-semibold text-base sm:text-lg text-[#082F35] whitespace-nowrap">
+                SmartDoc <span className="bg-gradient-to-r from-teal-600 via-cyan-500 to-teal-500 bg-clip-text text-transparent font-serif italic">Studio</span>
+              </span>
+              <span className="hidden md:inline-block text-[10px] font-mono text-teal-700 bg-teal-500/10 px-2.5 py-0.5 rounded-full border border-teal-500/20 font-medium whitespace-nowrap">
+                Editorial Canvas
+              </span>
+            </div>
           </div>
-        </div>
 
-        {/* Center Preset Tabs */}
-        <div className="flex items-center gap-1.5 bg-teal-950/5 border border-teal-900/10 p-1 rounded-full shadow-xs">
-          <span className="text-[10px] font-mono uppercase tracking-wider text-teal-800 px-2.5 py-1 rounded-full bg-white border border-teal-900/10 flex items-center gap-1 shrink-0 ml-0.5 shadow-xs">
-            <Sparkles className="w-2.5 h-2.5 text-teal-600" />
-            Demo Presets
-          </span>
+          {/* Center Preset Tabs */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 bg-teal-950/5 border border-teal-900/10 p-1 rounded-full shadow-xs shrink-0 max-w-full">
+            <span className="hidden sm:flex text-[10px] font-mono uppercase tracking-wider text-teal-800 px-2.5 py-1 rounded-full bg-white border border-teal-900/10 items-center gap-1 shrink-0 ml-0.5 shadow-xs whitespace-nowrap">
+              <Sparkles className="w-2.5 h-2.5 text-teal-600" />
+              Demo Presets
+            </span>
 
-          <button 
-            onClick={() => handleSelectPreset('stw')}
-            className={`px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer ${
-              selectedPreset === 'stw' ? 'bg-white text-teal-950 font-semibold shadow-xs border border-teal-200/80' : 'text-teal-900/60 hover:text-teal-950'
-            }`}
-          >
-            STW Symbols
-          </button>
-          <button 
-            onClick={() => handleSelectPreset('lab')}
-            className={`px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer ${
-              selectedPreset === 'lab' ? 'bg-white text-teal-950 font-semibold shadow-xs border border-teal-200/80' : 'text-teal-900/60 hover:text-teal-950'
-            }`}
-          >
-            CS Lab
-          </button>
-          <button 
-            onClick={() => handleSelectPreset('syllabus')}
-            className={`px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer ${
-              selectedPreset === 'syllabus' ? 'bg-white text-teal-950 font-semibold shadow-xs border border-teal-200/80' : 'text-teal-900/60 hover:text-teal-950'
-            }`}
-          >
-            Networks Syllabus
-          </button>
-        </div>
+            <button 
+              onClick={() => handleSelectPreset('stw')}
+              className={`px-2.5 sm:px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                selectedPreset === 'stw' ? 'bg-white text-teal-950 font-semibold shadow-xs border border-teal-200/80' : 'text-teal-900/60 hover:text-teal-950'
+              }`}
+            >
+              STW Symbols
+            </button>
+            <button 
+              onClick={() => handleSelectPreset('lab')}
+              className={`px-2.5 sm:px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                selectedPreset === 'lab' ? 'bg-white text-teal-950 font-semibold shadow-xs border border-teal-200/80' : 'text-teal-900/60 hover:text-teal-950'
+              }`}
+            >
+              CS Lab
+            </button>
+            <button 
+              onClick={() => handleSelectPreset('syllabus')}
+              className={`px-2.5 sm:px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                selectedPreset === 'syllabus' ? 'bg-white text-teal-950 font-semibold shadow-xs border border-teal-200/80' : 'text-teal-900/60 hover:text-teal-950'
+              }`}
+            >
+              Networks Syllabus
+            </button>
+          </div>
 
-        {/* Action Controls */}
-        <div className="flex items-center gap-2.5">
-          <label className="cursor-pointer px-3.5 py-1.5 text-xs font-medium rounded-full bg-[#082F35] hover:bg-[#0c424a] text-white shadow-xs flex items-center gap-1.5 transition-all">
-            <FileText className="w-3.5 h-3.5 text-cyan-200" />
-            <span>Upload PDF</span>
-            <input type="file" accept=".pdf,.txt" onChange={handleFileUpload} className="hidden" />
-          </label>
+          {/* Action Controls */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+            <label className="cursor-pointer px-2.5 sm:px-3.5 py-1.5 text-xs font-medium rounded-full bg-[#082F35] hover:bg-[#0c424a] text-white shadow-xs flex items-center gap-1.5 transition-all whitespace-nowrap">
+              <FileText className="w-3.5 h-3.5 text-cyan-200 shrink-0" />
+              <span className="hidden sm:inline">Upload PDF</span>
+              <span className="sm:hidden">Upload</span>
+              <input type="file" accept=".pdf,.txt" onChange={handleFileUpload} className="hidden" />
+            </label>
 
-          <button 
-            onClick={() => runPipelineSimulation(activeDoc)}
-            disabled={isProcessing}
-            className="px-3.5 py-1.5 text-xs font-medium rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-medium flex items-center gap-1.5 transition-all shadow-sm shadow-teal-500/25 disabled:opacity-50 cursor-pointer"
-          >
-            {isProcessing ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5 fill-current" />}
-            <span>{isProcessing ? 'Analyzing...' : 'Re-Run'}</span>
-          </button>
+            <button 
+              onClick={() => runPipelineSimulation(activeDoc)}
+              disabled={isProcessing}
+              className="px-2.5 sm:px-3.5 py-1.5 text-xs font-medium rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white flex items-center gap-1.5 transition-all shadow-sm shadow-teal-500/25 disabled:opacity-50 cursor-pointer whitespace-nowrap"
+            >
+              {isProcessing ? <RefreshCw className="w-3.5 h-3.5 animate-spin shrink-0" /> : <Play className="w-3.5 h-3.5 fill-current shrink-0" />}
+              <span className="hidden sm:inline">{isProcessing ? 'Analyzing...' : 'Re-Run'}</span>
+              <span className="sm:hidden">{isProcessing ? '...' : 'Run'}</span>
+            </button>
 
-          <button
-            onClick={handleExportStudyBrief}
-            className="px-3.5 py-1.5 text-xs font-medium rounded-full bg-white/80 border border-teal-200/60 text-teal-900 hover:bg-teal-50 hover:border-teal-300 shadow-sm transition-all flex items-center gap-1.5 cursor-pointer"
-            title="Download formatted Markdown & Print-to-PDF / Notion summary"
-          >
-            <Download className="w-3.5 h-3.5 text-teal-600" />
-            <span>Export Study Brief</span>
-          </button>
-        </div>
-      </header>
+            <button
+              onClick={handleExportStudyBrief}
+              className="px-2.5 sm:px-3.5 py-1.5 text-xs font-medium rounded-full bg-white/80 border border-teal-200/60 text-teal-900 hover:bg-teal-50 hover:border-teal-300 shadow-sm transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+              title="Download formatted Markdown & Print-to-PDF / Notion summary"
+            >
+              <Download className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+              <span className="hidden md:inline">Export Study Brief</span>
+              <span className="md:hidden">Brief</span>
+            </button>
+          </div>
+        </header>
 
-      {/* Main Split Layout */}
-      <div className="flex-1 flex overflow-hidden p-4 gap-4">
-        {/* Left Column: Cohesive Document Reader Canvas */}
-        <div className="w-1/2 flex flex-col bg-white/75 backdrop-blur-xl border border-cyan-100/70 rounded-3xl shadow-[0_10px_35px_rgba(6,182,212,0.06)] overflow-hidden">
-          <div className="flex-1 p-6 overflow-y-auto">
-            <div className="w-full space-y-4">
-              
-              {/* Top Card Header with Main Title Badge & Metadata */}
-              <div className="border-b border-teal-900/10 pb-4 mb-4">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-teal-500 inline-block animate-pulse"></span>
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-teal-500/10 text-teal-800 border border-teal-500/20 uppercase tracking-wide">
-                      {activeDoc.unitHeader || activeDoc.title}
+        {/* Main Content Grid Layout */}
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 w-full max-w-7xl mx-auto px-4 sm:px-6 overflow-x-hidden overflow-y-visible lg:overflow-hidden py-4 sm:py-6">
+          {/* Left Document Reader Card */}
+          <div className="lg:col-span-7 w-full max-h-[420px] lg:max-h-[720px] flex flex-col rounded-3xl bg-white/80 backdrop-blur-xl border border-cyan-100/70 shadow-sm p-5 sm:p-7 overflow-hidden shrink-0 lg:shrink">
+            <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+              <div className="w-full space-y-4">
+                
+                {/* Top Card Header with Main Title Badge & Metadata */}
+                <div className="border-b border-teal-900/10 pb-4 mb-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-2 max-w-full">
+                      <span className="h-2 w-2 rounded-full bg-teal-500 inline-block animate-pulse shrink-0"></span>
+                      <span className="px-3 py-1.5 rounded-xl sm:rounded-full text-xs font-mono font-bold bg-teal-500/10 text-teal-800 border border-teal-500/20 uppercase tracking-wide whitespace-normal sm:whitespace-nowrap leading-tight text-left max-w-full">
+                        {activeDoc.unitHeader || activeDoc.title}
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-mono text-teal-900/60 truncate max-w-full sm:max-w-[220px]" title={activeDoc.title}>
+                      {activeDoc.title}
                     </span>
                   </div>
-                  <span className="text-[11px] font-mono text-teal-900/60 truncate max-w-[220px]" title={activeDoc.title}>
-                    {activeDoc.title}
-                  </span>
-                </div>
 
-                <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                  <span className="px-2.5 py-1 rounded-full bg-white/80 text-teal-900/70 border border-teal-900/10">
-                    {activeDoc.format}
-                  </span>
-                  <span className="px-2.5 py-1 rounded-full bg-white/80 text-teal-900/70 border border-teal-900/10">
-                    {activeDoc.pageCount} Pages Analyzed
-                  </span>
-                  <span className="px-2.5 py-1 rounded-full bg-teal-500/10 text-teal-800 border border-teal-500/20 font-semibold">
-                    {activeDoc.words} Words
-                  </span>
-                  <span className="px-2.5 py-1 rounded-full bg-white/80 text-teal-900/50 border border-teal-900/10">
-                    {activeDoc.readingTime}
-                  </span>
-                </div>
-              </div>
-
-              {/* Main Reading Area: Full compiled body content */}
-              <div className="space-y-6 pb-6">
-                {activeDoc.pages.map((pageContent, pIdx) => (
-                  <div key={pIdx} className="space-y-3">
-                    {activeDoc.pages.length > 1 && (
-                      <div className="flex items-center gap-2 pt-2 pb-1 border-b border-teal-900/10 text-[10px] font-mono text-teal-900/40">
-                        <span className="text-teal-700 font-semibold">SECTION / SLIDE {pIdx + 1} OF {activeDoc.pageCount}</span>
-                      </div>
-                    )}
-                    <div className="leading-relaxed select-text space-y-2.5">
-                      {renderDocumentLines(pageContent)}
-                    </div>
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs font-mono">
+                    <span className="px-2.5 py-1 rounded-full bg-white/80 text-teal-900/70 border border-teal-900/10 text-[11px] sm:text-xs whitespace-nowrap">
+                      {activeDoc.format}
+                    </span>
+                    <span className="px-2.5 py-1 rounded-full bg-white/80 text-teal-900/70 border border-teal-900/10 text-[11px] sm:text-xs whitespace-nowrap">
+                      {activeDoc.pageCount} Pages Analyzed
+                    </span>
+                    <span className="px-2.5 py-1 rounded-full bg-teal-500/10 text-teal-800 border border-teal-500/20 font-semibold text-[11px] sm:text-xs whitespace-nowrap">
+                      {activeDoc.words} Words
+                    </span>
+                    <span className="px-2.5 py-1 rounded-full bg-white/80 text-teal-900/50 border border-teal-900/10 text-[11px] sm:text-xs whitespace-nowrap">
+                      {activeDoc.readingTime}
+                    </span>
                   </div>
-                ))}
+                </div>
+
+                {/* Main Reading Area: Full compiled body content */}
+                <div className="space-y-6 pb-6">
+                  {activeDoc.pages.map((pageContent, pIdx) => (
+                    <div key={pIdx} className="space-y-3">
+                      {activeDoc.pages.length > 1 && (
+                        <div className="flex items-center gap-2 pt-2 pb-1 border-b border-teal-900/10 text-[10px] font-mono text-teal-900/40">
+                          <span className="text-teal-700 font-semibold whitespace-nowrap">SECTION / SLIDE {pIdx + 1} OF {activeDoc.pageCount}</span>
+                        </div>
+                      )}
+                      <div className="leading-relaxed select-text space-y-2.5">
+                        {renderDocumentLines(pageContent)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Right Column: AI Extraction Intelligence Panel */}
-        <div className="w-1/2 flex flex-col space-y-4 overflow-y-auto">
+          {/* Right Analysis & Intelligence Panel */}
+          <div className="lg:col-span-5 w-full flex flex-col gap-6 overflow-x-hidden overflow-y-visible lg:overflow-y-auto shrink-0 lg:shrink pb-8 lg:pb-0">
           {/* Stepper Pipeline Card */}
           <div className="bg-white/75 backdrop-blur-xl border border-cyan-100/70 rounded-3xl p-4 sm:p-5 shadow-[0_10px_35px_rgba(6,182,212,0.06)]">
             <div className="flex items-center justify-between text-xs mb-2">
@@ -1817,21 +1817,21 @@ ${p.trim()}
           </div>
 
           {/* Metric Badges: 2-Column Stats Grid */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full">
             <div className="bg-white/75 backdrop-blur-xl border border-cyan-100/70 rounded-3xl p-4 shadow-[0_10px_35px_rgba(6,182,212,0.06)]">
-              <div className="text-[11px] text-teal-900/60 mb-1 flex items-center gap-1.5">
-                <BookOpen className="w-3.5 h-3.5 text-teal-600" /> Words Analyzed
+              <div className="text-[11px] text-teal-900/60 mb-1 flex items-center gap-1.5 whitespace-nowrap">
+                <BookOpen className="w-3.5 h-3.5 text-teal-600 shrink-0" /> Words Analyzed
               </div>
               <div className="text-2xl font-bold font-mono text-slate-900">{activeDoc.words}</div>
-              <div className="text-[10px] text-teal-900/40 mt-0.5">{activeDoc.readingTime}</div>
+              <div className="text-[10px] text-teal-900/40 mt-0.5 whitespace-nowrap">{activeDoc.readingTime}</div>
             </div>
 
             <div className="bg-white/75 backdrop-blur-xl border border-cyan-100/70 rounded-3xl p-4 shadow-[0_10px_35px_rgba(6,182,212,0.06)]">
-              <div className="text-[11px] text-teal-900/60 mb-1 flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-teal-600" /> Deadlines Detected
+              <div className="text-[11px] text-teal-900/60 mb-1 flex items-center gap-1.5 whitespace-nowrap">
+                <Calendar className="w-3.5 h-3.5 text-teal-600 shrink-0" /> Deadlines Detected
               </div>
               <div className="text-2xl font-bold font-mono text-slate-900">{activeDoc.deadlines.length}</div>
-              <div className="text-[10px] text-teal-900/40 mt-0.5">
+              <div className="text-[10px] text-teal-900/40 mt-0.5 whitespace-nowrap">
                 {activeDoc.deadlines.length === 0 ? 'Reference Document' : 'Action Required'}
               </div>
             </div>
@@ -1855,7 +1855,7 @@ ${p.trim()}
                       <div className="font-medium text-stone-900">{d.item}</div>
                       <div className="text-[11px] text-stone-500 font-mono mt-0.5">{d.date}</div>
                     </div>
-                    <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200/80">
+                    <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200/80 whitespace-nowrap shrink-0">
                       {d.tag}
                     </span>
                   </div>
@@ -1865,9 +1865,9 @@ ${p.trim()}
           </div>
 
           {/* ── Topic-Aware Synthesized Revision Checklist / Interactive Flashcards ── */}
-          <div className="p-6 rounded-3xl bg-white/80 backdrop-blur-xl border border-cyan-100/70 shadow-sm overflow-hidden h-auto min-h-fit flex flex-col justify-between">
+          <div className="w-full min-h-[380px] h-auto rounded-3xl bg-white/85 backdrop-blur-xl border border-cyan-100/70 shadow-md p-6 flex flex-col justify-between mt-4 overflow-hidden">
             {/* Mode Switcher Tabs */}
-            <div className="flex items-center justify-between text-xs mb-3.5 gap-2">
+            <div className="flex flex-wrap items-center justify-between text-xs mb-3.5 gap-2">
               <div className="flex items-center gap-1 p-1 bg-teal-950/5 border border-teal-900/10 rounded-full shadow-2xs">
                 <button
                   onClick={() => setStudyTab('checklist')}
@@ -1925,27 +1925,27 @@ ${p.trim()}
                   ></div>
                 </div>
 
-                <div className="space-y-2 flex-1 flex flex-col justify-start max-h-[360px] overflow-y-auto pr-1 mb-2">
+                <div className="space-y-2.5 flex-1 flex flex-col justify-start max-h-[380px] overflow-y-auto pr-1 mb-2 custom-scrollbar">
                   {activeDoc.checklist.map((item, i) => {
                     const isChecked = !!completedItems[item.task];
                     return (
                       <div 
                         key={i} 
                         onClick={() => toggleChecklist(item.task)}
-                        className="flex items-start justify-between gap-3 py-2.5 px-3.5 rounded-2xl bg-white/60 hover:bg-white/90 border border-teal-900/10 hover:border-teal-400/50 cursor-pointer transition-all group shadow-2xs"
+                        className="flex items-start justify-between gap-3 py-3.5 px-4 text-sm sm:text-base rounded-2xl bg-white/60 hover:bg-white/90 border border-teal-900/10 hover:border-teal-400/50 cursor-pointer transition-all group shadow-2xs"
                       >
                         <div className="flex items-start gap-3 flex-1 min-w-0">
                           {isChecked ? (
-                            <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+                            <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-teal-600 shrink-0 mt-0.5" />
                           ) : (
-                            <Square className="w-4 h-4 text-stone-400 group-hover:text-teal-600 shrink-0 mt-0.5" />
+                            <Square className="w-4 h-4 sm:w-5 sm:h-5 text-stone-400 group-hover:text-teal-600 shrink-0 mt-0.5" />
                           )}
-                          <span className={`select-none flex-1 text-xs text-stone-700 leading-normal break-words ${isChecked ? 'line-through text-stone-400' : ''}`}>
+                          <span className={`select-none flex-1 text-xs sm:text-sm text-stone-700 leading-normal break-words ${isChecked ? 'line-through text-stone-400' : ''}`}>
                             {item.task}
                           </span>
                         </div>
 
-                        <span className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border shrink-0 self-start ml-2 font-medium ${getTagBadgeClass(item.tag)}`}>
+                        <span className={`text-[10px] sm:text-xs font-mono px-2.5 py-0.5 rounded-full border shrink-0 self-start ml-2 font-medium whitespace-nowrap ${getTagBadgeClass(item.tag)}`}>
                           {item.tag}
                         </span>
                       </div>
@@ -1955,10 +1955,10 @@ ${p.trim()}
               </div>
             ) : (
               /* Interactive 3D Flip Flashcard Mode */
-              <div className="w-full flex flex-col items-center select-none">
+              <div className="w-full max-w-md mx-auto flex flex-col items-center select-none">
                 {/* Perspective Container */}
                 <div 
-                  className="w-full h-[260px] cursor-pointer"
+                  className="w-full h-[270px] cursor-pointer"
                   style={{ perspective: '1000px' }}
                   onClick={() => setIsCardFlipped(!isCardFlipped)}
                 >
@@ -1972,7 +1972,7 @@ ${p.trim()}
                   >
                     {/* FRONT FACE */}
                     <div 
-                      className="absolute inset-0 w-full h-full rounded-2xl p-6 flex flex-col justify-between bg-white/90 backdrop-blur-xl border border-teal-200/60 shadow-sm"
+                      className="absolute inset-0 w-full h-full rounded-2xl p-4 sm:p-6 flex flex-col justify-between bg-white/90 backdrop-blur-xl border border-teal-200/60 shadow-sm"
                       style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                     >
                       <div className="flex justify-between items-center text-xs">
@@ -1982,8 +1982,8 @@ ${p.trim()}
                         <span className="text-teal-600/70 font-mono text-[11px]">Study Card</span>
                       </div>
                       
-                      <div className="my-auto py-2 text-center overflow-y-auto max-h-[150px] pr-1 card-scrollbar">
-                        <p className="font-serif text-base sm:text-lg text-slate-800 leading-snug px-4">
+                      <div className="my-auto py-2 text-center overflow-y-auto max-h-[160px] pr-1 custom-scrollbar">
+                        <p className="font-serif text-base sm:text-lg text-slate-800 leading-snug px-2 sm:px-4">
                           {currentCard.front}
                         </p>
                       </div>
@@ -1995,7 +1995,7 @@ ${p.trim()}
 
                     {/* BACK FACE */}
                     <div 
-                      className="absolute inset-0 w-full h-full rounded-2xl p-6 flex flex-col justify-between bg-gradient-to-br from-teal-500/10 via-cyan-500/10 to-teal-500/5 backdrop-blur-xl border border-teal-300 shadow-sm"
+                      className="absolute inset-0 w-full h-full rounded-2xl p-4 sm:p-6 flex flex-col justify-between bg-gradient-to-br from-teal-500/10 via-cyan-500/10 to-teal-500/5 backdrop-blur-xl border border-teal-300 shadow-sm"
                       style={{ 
                         backfaceVisibility: 'hidden', 
                         WebkitBackfaceVisibility: 'hidden',
@@ -2009,8 +2009,8 @@ ${p.trim()}
                         <span className="text-teal-600/70 font-mono text-[11px]">Verified Note</span>
                       </div>
 
-                      <div className="my-auto py-2 text-center overflow-y-auto max-h-[150px] pr-1 card-scrollbar">
-                        <p className="font-sans text-sm sm:text-base text-slate-700 leading-relaxed px-4">
+                      <div className="my-auto py-2 text-center overflow-y-auto max-h-[160px] pr-1 custom-scrollbar">
+                        <p className="font-sans text-sm sm:text-base text-slate-700 leading-relaxed px-2 sm:px-4">
                           {currentCard.back}
                         </p>
                       </div>
@@ -2022,14 +2022,14 @@ ${p.trim()}
                   </div>
                 </div>
 
-                {/* Controls Row (Below the Card, Never Collapsing or Overlapping) */}
-                <div className="w-full flex items-center justify-between mt-4 pt-1">
+                {/* Controls Row (Below the Card, Large Tap Targets) */}
+                <div className="w-full flex items-center justify-between mt-5 pt-1 gap-2.5 sm:gap-3">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       handlePrevCard();
                     }}
-                    className="px-4 py-1.5 rounded-full text-xs font-medium border border-teal-200/60 bg-white/70 text-slate-700 hover:bg-teal-50 transition-all cursor-pointer"
+                    className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium border border-teal-200/60 bg-white/80 text-slate-700 hover:bg-teal-50 transition-all cursor-pointer shrink-0 shadow-2xs"
                   >
                     ‹ Prev
                   </button>
@@ -2038,10 +2038,10 @@ ${p.trim()}
                       e.stopPropagation();
                       toggleMastered();
                     }}
-                    className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all shadow-sm cursor-pointer ${
+                    className={`flex-1 sm:flex-initial px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all shadow-sm cursor-pointer truncate ${
                       isMastered
                         ? 'bg-teal-600 text-white hover:bg-teal-700'
-                        : 'bg-white/70 text-slate-700 border border-teal-200/60 hover:bg-teal-50'
+                        : 'bg-white/80 text-slate-700 border border-teal-200/60 hover:bg-teal-50'
                     }`}
                   >
                     {isMastered ? 'Mastered ✓' : 'Mark Mastered'}
@@ -2051,7 +2051,7 @@ ${p.trim()}
                       e.stopPropagation();
                       handleNextCard();
                     }}
-                    className="px-4 py-1.5 rounded-full text-xs font-medium border border-teal-200/60 bg-white/70 text-slate-700 hover:bg-teal-50 transition-all cursor-pointer"
+                    className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium border border-teal-200/60 bg-white/80 text-slate-700 hover:bg-teal-50 transition-all cursor-pointer shrink-0 shadow-2xs"
                   >
                     Next ›
                   </button>
